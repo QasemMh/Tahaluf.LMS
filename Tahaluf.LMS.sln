@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32616.157
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tahaluf.LMS.API", "Tahaluf.LMS.API\Tahaluf.LMS.API.csproj", "{91324ABC-3E88-448D-A9E2-37C1DF288460}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tahaluf.LMS.Infra", "Tahaluf.LMS.Infra\Tahaluf.LMS.Infra.csproj", "{35CE7DFF-8A7A-46C9-8A4E-45FBEEA5B622}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tahaluf.LMS.Core", "Tahaluf.LMS.Core\Tahaluf.LMS.Core.csproj", "{EA360CD7-31BD-4979-80BB-197110F8CDFD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{91324ABC-3E88-448D-A9E2-37C1DF288460}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91324ABC-3E88-448D-A9E2-37C1DF288460}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91324ABC-3E88-448D-A9E2-37C1DF288460}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91324ABC-3E88-448D-A9E2-37C1DF288460}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35CE7DFF-8A7A-46C9-8A4E-45FBEEA5B622}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35CE7DFF-8A7A-46C9-8A4E-45FBEEA5B622}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35CE7DFF-8A7A-46C9-8A4E-45FBEEA5B622}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35CE7DFF-8A7A-46C9-8A4E-45FBEEA5B622}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA360CD7-31BD-4979-80BB-197110F8CDFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA360CD7-31BD-4979-80BB-197110F8CDFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA360CD7-31BD-4979-80BB-197110F8CDFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA360CD7-31BD-4979-80BB-197110F8CDFD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1653A360-D6BF-45C2-8714-C44671AA4CE6}
+	EndGlobalSection
+EndGlobal
