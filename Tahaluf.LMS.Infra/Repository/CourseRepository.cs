@@ -10,7 +10,7 @@ using Tahaluf.LMS.Core.Repository;
 
 namespace Tahaluf.LMS.Infra.Repository
 {
-    internal class CourseRepository : ICourseRepository
+    public class CourseRepository : ICourseRepository
     {
         private readonly IDbContext _context;
 
@@ -57,10 +57,64 @@ namespace Tahaluf.LMS.Infra.Repository
         public bool Delete(int id)
         {
             var parameters = new DynamicParameters();
-            parameters.Add("@Id",id, dbType: DbType.Int32);
+            parameters.Add("@Id", id, dbType: DbType.Int32);
             var result = _context.Connection
-                  .ExecuteAsync("Course_Package.DeleteCourse", parameters, commandType: CommandType.StoredProcedure);
+                  .ExecuteAsync("Course_Package.DeleteCourse",
+                                parameters,
+                                commandType: CommandType.StoredProcedure);
             return true;
+        }
+
+        public List<Course> GetCoursesByName(string name)
+        {
+            var parameters = new DynamicParameters();
+            parameters.Add("@Name", name, dbType: DbType.String);
+            var result = _context.Connection
+                  .Query<Course>("Course_Package.GetCoursesByName",
+                                 parameters,
+                                 commandType: CommandType.StoredProcedure);
+            return result.ToList();
+        }
+
+        public List<Course> GetCoursesByPrice(double price)
+        {   
+            var parameters = new DynamicParameters();
+            parameters.Add("@Price", price, dbType: DbType.Double);
+            var result = _context.Connection
+                  .Query<Course>("Course_Package.GetCoursesByPrice",
+                                 parameters,
+                                 commandType: CommandType.StoredProcedure);
+            return result.ToList();
+        }
+
+        public List<Course> GetCheapestCourse()
+        {
+            var result = _context.Connection
+               .Query<Course>("Course_Package.GetCheapestCourse",
+                               commandType: CommandType.StoredProcedure);
+            return result.ToList(); 
+        }
+
+        public List<Course> GetByDateFrom(DateTime dateFrom)
+        {
+            var parameters = new DynamicParameters();
+            parameters.Add("@DateFrom", dateFrom, dbType: DbType.Date);
+            var result = _context.Connection
+                .Query<Course>("Course_Package.GetByDateFrom",
+                                 parameters,
+                                 commandType: CommandType.StoredProcedure);
+            return result.ToList();
+        }
+
+        public List<Course> GetByDateTo(DateTime dateTo)
+        {
+            var parameters = new DynamicParameters();
+            parameters.Add("@DateTo", dateTo, dbType: DbType.Date);
+            var result = _context.Connection
+                .Query<Course>("Course_Package.GetByDateTo",
+                                parameters,
+                                commandType: CommandType.StoredProcedure);
+            return result.ToList();
         }
     }
 }

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 using Tahaluf.LMS.Core.Data;
 
-namespace Tahaluf.LMS.Core.Repository
+namespace Tahaluf.LMS.Core.Service
 {
-    public interface ICourseRepository
+    public interface ICourseService
     {
         bool Create(Course course);
         List<Course> ReadAll();
@@ -16,6 +16,5 @@ namespace Tahaluf.LMS.Core.Repository
         List<Course> GetCheapestCourse();
         List<Course> GetByDateFrom(DateTime dateFrom);
         List<Course> GetByDateTo(DateTime dateTo);
-
     }
 }
