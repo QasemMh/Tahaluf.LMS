@@ -6,6 +6,7 @@ using System.Text;
 using Dapper;
 using Tahaluf.LMS.Core.Common;
 using Tahaluf.LMS.Core.Data;
+using Tahaluf.LMS.Core.DTO;
 using Tahaluf.LMS.Core.Repository;
 
 namespace Tahaluf.LMS.Infra.Repository
@@ -22,20 +23,23 @@ namespace Tahaluf.LMS.Infra.Repository
         public bool Create(Course course)
         {
             var parameters = new DynamicParameters();
-            parameters.Add("@Name", course.Name, dbType: DbType.String);
-            parameters.Add("@Price", course.Price, dbType: DbType.Double);
-            parameters.Add("@StartDate", course.StartDate, dbType: DbType.Date);
-            parameters.Add("@EndDate", course.EndDate, dbType: DbType.Date);
+            parameters.Add("@cname", course.Name, dbType: DbType.String);
+            parameters.Add("@cprice", course.Price, dbType: DbType.Double);
+            parameters.Add("@sDate", course.StartDate, dbType: DbType.Date);
+            parameters.Add("@eDate", course.EndDate, dbType: DbType.Date);
 
             var result = _context.Connection
-                  .ExecuteAsync("Course_Package.CreateCourse", parameters, commandType: CommandType.StoredProcedure);
+                  .ExecuteAsync("Course_Package.CreateCourse",
+                                parameters,
+                                commandType: CommandType.StoredProcedure);
             return true;
         }
 
         public List<Course> ReadAll()
         {
             var result = _context.Connection
-                .Query<Course>("Course_Package.GetCreateCourses", commandType: CommandType.StoredProcedure);
+                .Query<Course>("Course_Package.GetAllCourses",
+                               commandType: CommandType.StoredProcedure);
 
             return result.ToList();
         }
@@ -43,11 +47,11 @@ namespace Tahaluf.LMS.Infra.Repository
         public bool Update(Course course)
         {
             var parameters = new DynamicParameters();
-            parameters.Add("@Id", course.Id, dbType: DbType.Int32);
-            parameters.Add("@Name", course.Name, dbType: DbType.String);
-            parameters.Add("@Price", course.Price, dbType: DbType.Double);
-            parameters.Add("@StartDate", course.StartDate, dbType: DbType.Date);
-            parameters.Add("@EndDate", course.EndDate, dbType: DbType.Date);
+            parameters.Add("@cId", course.Id, dbType: DbType.Int32);
+            parameters.Add("@cname", course.Name, dbType: DbType.String);
+            parameters.Add("@cprice", course.Price, dbType: DbType.Double);
+            parameters.Add("@sDate", course.StartDate, dbType: DbType.Date);
+            parameters.Add("@eDate", course.EndDate, dbType: DbType.Date);
 
             var result = _context.Connection
                   .ExecuteAsync("Course_Package.UpdateCourse", parameters, commandType: CommandType.StoredProcedure);
@@ -57,7 +61,7 @@ namespace Tahaluf.LMS.Infra.Repository
         public bool Delete(int id)
         {
             var parameters = new DynamicParameters();
-            parameters.Add("@Id", id, dbType: DbType.Int32);
+            parameters.Add("@cid", id, dbType: DbType.Int32);
             var result = _context.Connection
                   .ExecuteAsync("Course_Package.DeleteCourse",
                                 parameters,
@@ -68,7 +72,7 @@ namespace Tahaluf.LMS.Infra.Repository
         public List<Course> GetCoursesByName(string name)
         {
             var parameters = new DynamicParameters();
-            parameters.Add("@Name", name, dbType: DbType.String);
+            parameters.Add("@cname", name, dbType: DbType.String);
             var result = _context.Connection
                   .Query<Course>("Course_Package.GetCoursesByName",
                                  parameters,
@@ -79,13 +83,13 @@ namespace Tahaluf.LMS.Infra.Repository
         public List<Course> GetCoursesByPrice(double price)
         {   
             var parameters = new DynamicParameters();
-            parameters.Add("@Price", price, dbType: DbType.Double);
+            parameters.Add("@cprice", price, dbType: DbType.Double);
             var result = _context.Connection
                   .Query<Course>("Course_Package.GetCoursesByPrice",
                                  parameters,
                                  commandType: CommandType.StoredProcedure);
             return result.ToList();
-        }
+        }   
 
         public List<Course> GetCheapestCourse()
         {
@@ -98,7 +102,7 @@ namespace Tahaluf.LMS.Infra.Repository
         public List<Course> GetByDateFrom(DateTime dateFrom)
         {
             var parameters = new DynamicParameters();
-            parameters.Add("@DateFrom", dateFrom, dbType: DbType.Date);
+            parameters.Add("@sdate", dateFrom, dbType: DbType.Date);
             var result = _context.Connection
                 .Query<Course>("Course_Package.GetByDateFrom",
                                  parameters,
@@ -109,12 +113,23 @@ namespace Tahaluf.LMS.Infra.Repository
         public List<Course> GetByDateTo(DateTime dateTo)
         {
             var parameters = new DynamicParameters();
-            parameters.Add("@DateTo", dateTo, dbType: DbType.Date);
+            parameters.Add("@edate", dateTo, dbType: DbType.Date);
             var result = _context.Connection
                 .Query<Course>("Course_Package.GetByDateTo",
                                 parameters,
                                 commandType: CommandType.StoredProcedure);
             return result.ToList();
+        }
+
+        public List<CourseDto> GetSimpleCourses()
+        {
+
+            var result = _context.Connection
+                .Query<CourseDto>("Course_Package.GetAllCourses",
+                               commandType: CommandType.StoredProcedure);
+
+            return result.ToList();
+
         }
     }
 }

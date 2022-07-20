@@ -1,0 +1,7 @@
+
+Edit Stored Procedure Name (in repository class)
+Edit Stored Procedure Parameter (in repository class)
+
+
+
+**Problem Fix the BookDTO binding data

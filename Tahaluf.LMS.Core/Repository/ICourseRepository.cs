@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Tahaluf.LMS.Core.Data;
+using Tahaluf.LMS.Core.DTO;
 
 namespace Tahaluf.LMS.Core.Repository
 {
@@ -16,6 +17,10 @@ namespace Tahaluf.LMS.Core.Repository
         List<Course> GetCheapestCourse();
         List<Course> GetByDateFrom(DateTime dateFrom);
         List<Course> GetByDateTo(DateTime dateTo);
+        
+        List<CourseDto> GetSimpleCourses();
+
+
 
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Tahaluf.LMS.Core.Data;
+using Tahaluf.LMS.Core.DTO;
 using Tahaluf.LMS.Core.Repository;
 using Tahaluf.LMS.Core.Service;
 
@@ -49,6 +50,11 @@ namespace Tahaluf.LMS.Infra.Service
         public List<Course> GetCoursesByPrice(double price)
         {
             return courseRepository.GetCoursesByPrice(price);
+        }
+
+        public List<CourseDto> GetSimpleCourses()
+        {
+            return courseRepository.GetSimpleCourses();
         }
 
         public List<Course> ReadAll()

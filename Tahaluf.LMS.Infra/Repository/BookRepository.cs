@@ -6,6 +6,7 @@ using System.Text;
 using Dapper;
 using Tahaluf.LMS.Core.Common;
 using Tahaluf.LMS.Core.Data;
+using Tahaluf.LMS.Core.DTO;
 using Tahaluf.LMS.Core.Repository;
 
 namespace Tahaluf.LMS.Infra.Repository
@@ -86,5 +87,21 @@ namespace Tahaluf.LMS.Infra.Repository
                                 commandType: CommandType.StoredProcedure);
             return result.Result.FirstOrDefault();
         }
+
+
+        public List<Book> SearchBook(BookSearchDTO bookDto)
+        {
+            var parameters = new DynamicParameters();
+            parameters.Add("bookName", bookDto.BookName, dbType: DbType.String);
+            parameters.Add("courseName", bookDto.CourseName, dbType: DbType.String);
+            parameters.Add("sDate", bookDto.StartDate, dbType: DbType.Date);
+            parameters.Add("eDate", bookDto.EndDate, dbType: DbType.Date);
+            var result = _context.Connection
+              .QueryAsync<Book>("Book_Package.SearchBook",
+                                parameters,
+                                commandType: CommandType.StoredProcedure);
+            return result.Result.ToList();
+        }
+
     }
 }
