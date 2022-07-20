@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Tahaluf.LMS.Core.Data;
+using Tahaluf.LMS.Core.DTO;
 using Tahaluf.LMS.Core.Repository;
 using Tahaluf.LMS.Core.Service;
 
@@ -38,6 +39,11 @@ namespace Tahaluf.LMS.Infra.Service
         public Book GetBookById(int id)
         {
             return _bookRepository.GetBookById(id);
+        }
+
+        public List<Book> SearchBook(BookSearchDTO bookDto)
+        {
+            return _bookRepository.SearchBook(bookDto);
         }
 
         public bool Update(Book book)

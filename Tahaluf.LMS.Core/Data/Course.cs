@@ -14,6 +14,8 @@ namespace Tahaluf.LMS.Core.Data
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
 
+        public string ImagePath { get; set; }
+
 
         public ICollection<Book> Books { get; set; }
         public ICollection<TeacherCourse> TeacherCourses { get; set; }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Tahaluf.LMS.Core.Data;
+using Tahaluf.LMS.Core.DTO;
 
 namespace Tahaluf.LMS.Core.Service
 {
@@ -13,5 +14,7 @@ namespace Tahaluf.LMS.Core.Service
         bool Delete(int id);
         Book GetBookById(int id);
         Book GetBookByDate(DateTime publishDate);
+        List<Book> SearchBook(BookSearchDTO bookDto);
+
     }
 }

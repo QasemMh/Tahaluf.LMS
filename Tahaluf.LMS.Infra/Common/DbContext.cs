@@ -12,10 +12,9 @@ namespace Tahaluf.LMS.Infra.Common
         private DbConnection _dbConnection;
         private readonly IConfiguration _configuration;
 
-        public DbContext(IConfiguration configuration, DbConnection dbConnection)
+        public DbContext(IConfiguration configuration)
         {
             _configuration = configuration;
-            _dbConnection = dbConnection;
         }
 
 
