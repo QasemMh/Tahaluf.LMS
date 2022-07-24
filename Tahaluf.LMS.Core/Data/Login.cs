@@ -13,7 +13,7 @@ namespace Tahaluf.LMS.Core.Data
         [Required]
         public string Password { get; set; }
         //[EmailAddress]
-        [Required]
+       // [Required]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
         [DataType(DataType.PhoneNumber)]

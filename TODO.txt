@@ -5,3 +5,5 @@ Edit Stored Procedure Parameter (in repository class)
 
 
 **Problem Fix the BookDTO binding data
+
+**Add SymmetricSecurityKey to Configuration file
